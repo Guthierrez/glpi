@@ -1445,7 +1445,7 @@ class KnowbaseItem extends CommonDBTM {
       } else if ($type == 'lastupdate') {
          $orderby = "ORDER BY `date_mod` DESC";
          $title   = __('Last updated entries');
-      } else {
+      } else if ($type == 'popular' {
          $orderby = "ORDER BY `view` DESC";
          $title   = __('Most popular questions');
       }
