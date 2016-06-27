@@ -1067,8 +1067,8 @@ class Html {
       global $CFG_GLPI, $PLUGIN_HOOKS;
 
       // complete title with id if exist
-      if (isset($_GET['id']) && $_GET['id']) {
-         $title.= " - ".$_GET['id'];
+      if(isset($SESSION['glpiis_ids_visible']) && $SESSION['glpiis_ids_visible']) {
+         $title.= " - ".(isset($_GET['id']) ? $_GET['id'] : '');
       }
 
       // Send UTF8 Headers
