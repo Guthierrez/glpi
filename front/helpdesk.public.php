@@ -111,6 +111,19 @@ if (isset($_GET['create_ticket'])) {
       echo "</td></tr>";
    }
 
+   // listando os chamados solucionados
+   echo "<tr class='noHover'><td class='top'>";
+	  
+	  echo "<br><table class='tab_cadrehov'>";
+   echo "<tr class='noHover'><th><div class='relative'><span>Chamados solucionados</span>";
+	  echo "</table>\n";
+	  echo "</div></th></tr>\n";
+      
+	  // usar metodo
+	  // Reminder::showListForCentral(false);
+      echo "</td></tr>";
+   // }
+
    if (Session::haveRight("reminder_public", READ)) {
       echo "<tr class='noHover'><td class='top'>";
       Reminder::showListForCentral(false);
