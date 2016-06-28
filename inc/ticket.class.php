@@ -6851,18 +6851,28 @@ class Ticket extends CommonITILObject {
    }
    
    /**
-    * Em desenvolvimento
+    *
     * by Diogo Leal
    **/
    static function showTicketsSolved() {
 	
-    $users_id = Session::getLoginUserID();
- 	  $query = "SELECT id, name, users_id_recipient FROM glpi_tickets where status = '5' and users_id_recipient = '$users_id'";
- 	  
- 	  echo "<br><table class='tab_cadrehov'>";
-    echo "<tr class='noHover'><th><div class='relative'><span>Chamados solucionados $users_id</span>";
- 	  echo "</div></th></tr>\n";
-    echo "</table>\n";
+      global $DB;
+	  $users_id = Session::getLoginUserID();
+	  $query = "SELECT id, name, users_id_recipient FROM glpi_tickets where status = '5' and users_id_recipient = '$users_id'";
+	  $result = $DB->query($query);
+	  $nb = $DB->numrows($result);
+	    
+	  echo "<br><table class='tab_cadrehov'>";
+      echo "<tr class='noHover'><th><div class='relative'><span>Chamados solucionados</span>";
+	  
+	  while ($data = $DB->fetch_assoc($result)) {
+            echo "<tr class='tab_bg_2'><td>";
+			echo "<a href='ticket.form.php?id=" . $data["id"] . "'>" . $data["name"] . "</a></br></br>";
+			echo "</td></tr>\n";
+	  }
+	  
+	  echo "</div></th></tr>\n";
+      echo "</table>\n";
    }
 
 }
