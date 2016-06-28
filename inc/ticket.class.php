@@ -6849,5 +6849,20 @@ class Ticket extends CommonITILObject {
       }
       return parent::getCalendar();
    }
+   
+   /**
+    * Em desenvolvimento
+    * by Diogo Leal
+   **/
+   static function showTicketsSolved() {
+	
+    $users_id = Session::getLoginUserID();
+ 	  $query = "SELECT id, name, users_id_recipient FROM glpi_tickets where status = '5' and users_id_recipient = '$users_id'";
+ 	  
+ 	  echo "<br><table class='tab_cadrehov'>";
+    echo "<tr class='noHover'><th><div class='relative'><span>Chamados solucionados $users_id</span>";
+ 	  echo "</div></th></tr>\n";
+    echo "</table>\n";
+   }
 
 }
