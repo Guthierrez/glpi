@@ -1756,7 +1756,28 @@ class Dropdown {
          $output .= implode('<br>',$to_display);
       } else {
 
-         $output  .= "<select name='$field_name' id='$field_id'";
+         $output  .= "<script> searchBox = document.querySelector("#searchBox"); 
+. "countries = document.querySelector("#countries");"
+."var when = \"keyup\"; //You can change this to keydown, keypress or change"
+
+."searchBox.addEventListener(\"keyup\", function (e) {"
+    ."var text = e.target.value; "
+    ."var options = countries.options; "
+    ."for (var i = 0; i < options.length; i++) {"
+        ."var option = options[i]; "
+        ."var optionText = option.text; "
+        ."var lowerOptionText = optionText.toLowerCase();"
+        ."var lowerText = text.toLowerCase(); "
+        ."var regex = new RegExp(\"^\" + text, \"i\");"
+        ."var match = optionText.match(regex); "
+        ."var contains = lowerOptionText.indexOf(lowerText) != -1;"
+        ."if (match || contains) {"
+            ."option.selected = true;"
+            ."return;"
+        ."}"
+        ."searchBox.selectedIndex = 0;"
+    ."}"
+."});</script><select name='$field_name' id='$field_id'";
 
          if($param['tooltip']) {
             $output .= ' title="'.Html::entities_deep($param['tooltip']).'"';
